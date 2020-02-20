@@ -1,5 +1,19 @@
 var http = require('http');
 var fs = require('fs');
+var mongoose    = require('mongoose');
+
+var db = mongoose.connection;
+db.on('error', function(){
+    // CONNECTED TO MONGODB SERVER
+    console.log("Connected to mongod server error");
+    console.error
+});
+db.once('open', function(){
+    // CONNECTED TO MONGODB SERVER
+    console.log("Connected to mongod server");
+});
+
+mongoose.connect('mongodb://localhost:27017');
 
 //404 error
 function send404Message(response) {
