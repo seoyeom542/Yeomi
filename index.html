@@ -270,10 +270,6 @@
         <p style="text-align: center; font-size: 200%;">맛집 등록하기</p>
         <ol id="form">
             <ul>
-                상호명 : <input type="text" id="sname">
-            </ul>
-            <ul>
-                주소 : <input type="text" id="loca">
                 <div class="map_wrap">
                     <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 
@@ -293,10 +289,17 @@
                 </div>
             </ul>
 
+
+            <ul>
+                상호명 : <input type="text" id="storeName" >
+            </ul>
+            <ul>
+                주소 : <input type="text" id="roadName">
+            </ul>
             <ul>
                 영업시간 : <br>
                 브레이크 타임 : <input type="radio">있음
-            </ul>
+            </ul> 
             <ul>
                 주메뉴 :
             </ul>
@@ -305,6 +308,10 @@
     </div>
 
     <script>
+        var storeName;
+        var roadName;
+        var storeNumber;
+
         var markers = [];
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
             mapOption = {
@@ -397,6 +404,10 @@
 
                     kakao.maps.event.addListener(marker, 'mouseout', function () {
                         infowindow.close();
+                    });
+
+                    kakao.maps.event.addListener(marker,'click', function(){
+                        addToDb();
                     });
 
                     itemEl.onmouseover = function () {
@@ -510,6 +521,18 @@
 
             infowindow.setContent(content);
             infowindow.open(map, marker);
+
+            roadName = place.road_address_name;
+            storeName = places.place_name;
+            storeNumber = place.phone;
+
+
+            document.getElementById(storeName).innerHTML;
+        }
+
+        //선택한 음식점의 정보를 저장하는 함수입니다.
+        function addToDb(){
+            alert("함수호출 완료!!");
         }
 
         // 검색결과 목록의 자식 Element를 제거하는 함수입니다
