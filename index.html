@@ -290,21 +290,25 @@
             </ul>
 
 
-            <ul>
-                상호명 : <input type="text" id="storeName" >
-            </ul>
-            <ul>
-                주소 : <input type="text" id="roadName">
-            </ul>
-            <ul>
-                영업시간 : <br>
-                브레이크 타임 : <input type="radio">있음
-            </ul> 
-            <ul>
-                주메뉴 :
-            </ul>
+            <form action="db.js" method="get">
+                <ul>
+                    상호명 : <input type="text" id="storeName">
+                </ul>
+                <ul>
+                    주소 : <input type="text" id="roadName">
+                </ul>
+                <ul>
+                    영업시간 : <br>
+                    브레이크 타임 : <input type="radio">있음
+                </ul>
+                <ul>
+                    주메뉴 :
+                </ul>
+            </form>
 
         </ol>
+
+        <input type="button" id="submit" value="등록하기" style="border: solid 1px black;">
     </div>
 
     <script>
@@ -364,7 +368,6 @@
 
                 alert('검색 결과 중 오류가 발생했습니다.');
                 return;
-
             }
         }
 
@@ -406,8 +409,9 @@
                         infowindow.close();
                     });
 
-                    kakao.maps.event.addListener(marker,'click', function(){
-                        addToDb();
+                    kakao.maps.event.addListener(marker, 'click', function () {
+                        
+                        addToDb(title);
                     });
 
                     itemEl.onmouseover = function () {
@@ -521,18 +525,17 @@
 
             infowindow.setContent(content);
             infowindow.open(map, marker);
-
-            roadName = place.road_address_name;
-            storeName = places.place_name;
-            storeNumber = place.phone;
-
-
-            document.getElementById(storeName).innerHTML;
         }
 
-        //선택한 음식점의 정보를 저장하는 함수입니다.
-        function addToDb(){
-            alert("함수호출 완료!!");
+        //선택한 음식점의 정보를 보여주고 저장하는 함수입니다.
+        function addToDb(title) {
+            //roadName = rName;
+            storeName = title;
+            //storeNumber = pNumber;
+
+            alert(storeName);
+            document.getElementById("storeName").value=storeName;
+
         }
 
         // 검색결과 목록의 자식 Element를 제거하는 함수입니다
