@@ -37,3 +37,17 @@ var storeSchema = new Schema({
 });
 module.exports = mongoose.model('store', storeSchema);
 
+var store = new store({
+    storeName: "NodeJS Tutorial",
+    property: "velopert",
+    storeNumber: 000000000,
+    storeX: 3,
+    storeY: 2
+});
+
+
+store.save(function(err, store){
+    if(err) return console.error(err);
+    console.dir(book);
+});
+
