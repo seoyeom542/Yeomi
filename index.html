@@ -54,6 +54,18 @@
             font-size: 170%;
         }
 
+        #submitTitle {
+            text-align: center;
+            font-size: 200%;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
         /*키워드로 검색하는 map에 대한 css*/
         .map_wrap,
         .map_wrap * {
@@ -267,11 +279,11 @@
 
     </div>
     <div id="en">
-        <p style="text-align: center; font-size: 200%;">맛집 등록하기</p>
+        <p id="submitTitle">맛집 등록하기</p>
         <ol id="form">
             <ul>
                 <div class="map_wrap">
-                    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+                    <div id="map"></div>
 
                     <div id="menu_wrap" class="bg_white">
                         <div class="option">
@@ -291,7 +303,7 @@
 
 
             <ul>
-                상호명 : <input type="text" id="storeName" >
+                상호명 : <input type="text" id="storeName">
             </ul>
             <ul>
                 주소 : <input type="text" id="roadName">
@@ -299,7 +311,7 @@
             <ul>
                 영업시간 : <br>
                 브레이크 타임 : <input type="radio">있음
-            </ul> 
+            </ul>
             <ul>
                 주메뉴 :
             </ul>
@@ -406,7 +418,7 @@
                         infowindow.close();
                     });
 
-                    kakao.maps.event.addListener(marker,'click', function(){
+                    kakao.maps.event.addListener(marker, 'click', function () {
                         addToDb();
                     });
 
@@ -531,7 +543,7 @@
         }
 
         //선택한 음식점의 정보를 저장하는 함수입니다.
-        function addToDb(){
+        function addToDb() {
             alert("함수호출 완료!!");
         }
 
