@@ -50,22 +50,23 @@
           </div>
         </div>
       </ul>
-      <ul>
-        상호명 : <input type="text" id="storeName">
-      </ul>
-      <ul>
-        주소 : <input type="text" id="roadName">
-      </ul>
-      <ul>
-        전화번호: <input type="text" id="storeNumber">
-      </ul>
-      <ul>
-        주메뉴 : <input type="textarea">
-      </ul>
+      <form action="" method="GET">
+        <ul>
+          상호명 : <input type="text" id="storeName">
+        </ul>
+        <ul>
+          주소 : <input type="text" id="roadName">
+        </ul>
+        <ul>
+          전화번호: <input type="text" id="storeNumber">
+        </ul>
+        <ul>
+          주메뉴 : <input type="textarea">
+        </ul>
+        <input type="submit" id="submit" value="등록하기" style="border: solid 1px black;" onclick="createDb()">
+      </form>
 
     </ol>
-
-    <input type="button" id="submit" value="등록하기" style="border: solid 1px black;" onclick="createDb()">
   </div>
   
   <script type="text/javascript" src="submit.js"></script>

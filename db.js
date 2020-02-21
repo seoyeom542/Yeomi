@@ -1,16 +1,7 @@
 // [LOAD PACKAGES]
-var express     = require('express');
-var app         = express();
-var bodyParser  = require('body-parser');
+
 var mongoose    = require('mongoose');
-
-// [CONFIGURE APP TO USE bodyParser]
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
-// [CONFIGURE SERVER PORT]
-var port = process.env.PORT || 8080;
-
+mongoose.connect('mongodb://localhost:27017/storeDB');
 var db = mongoose.connection;
 db.on('error', console.error);
 db.once('open', function(){
@@ -18,36 +9,69 @@ db.once('open', function(){
     console.log("Connected to mongod server");
 });
 
-mongoose.connect('mongodb://localhost:27017');
-// [CONFIGURE ROUTER]
-var router = require('./routes')(app)
 
-// [RUN SERVER]
-var server = app.listen(port, function(){
- console.log("Express server has started on port " + port)
-
-var Schema = mongoose.Schema;
-
-var storeSchema = new Schema({
+//스키마 생성
+var sttore = mongoose.Schema({
     storeName: String,
     roadAdress: String,
     storeNumber: Number,
     storeX: Number,
     storeY: Number
 });
-module.exports = mongoose.model('store', storeSchema);
 
-var store = new store({
-    storeName: "NodeJS Tutorial",
-    property: "velopert",
-    storeNumber: 000000000,
-    storeX: 3,
-    storeY: 2
+//스키마 모델 함수 컴파일
+var Store = mongoose.model('Schema', store);
+
+//newStore를 생성해서 값을 입력
+var newStore = new Store({storeName:'Hong Gil Dong', soadAdress:'서울시 강남구 논현동', storeNumver:'22', storeX:'33', storeY:'33'});
+
+//데이터 저장
+newStore.save(function(error, data){
+    if(error){
+        console.log(error);
+    }else{
+        console.log('Saved!')
+    }
 });
 
+//전체 데이터 가져오기
+Store.find(function(error, stores){
+    console.log('--- Read all ---');
+    if(error){
+        console.log(error);
+    }else{
+        console.log(students);
+    }
+})
 
-store.save(function(err, store){
-    if(err) return console.error(err);
-    console.dir(book);
+//특정 데이터 가져오기
+Store.find(function(error, stores){
+    console.log('--- Read all ---');
+    if(error){
+        console.log(error);
+    }else{
+        console.log(students);
+    }
+})
+
+})
+
+// 특정아이디 수정하기
+Store.findById({_id:'585b777f7e2315063457e4ac'}, function(error,store){
+    console.log('--- Update(PUT) ---');
+    if(error){
+        console.log(error);
+    }else{
+        store.storeName = '--modified--';
+        store.save(function(error,modified_store){
+            if(error){
+                console.log(error);
+            }else{
+                console.log(modified_store);
+            }
+        });
+    }
 });
+
+//삭제
 
