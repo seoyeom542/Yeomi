@@ -51,6 +51,11 @@ body {
     font-size: 170%;
   }
 
+  #submit{
+    border: solid 1px black; 
+    font-size=20pt
+  }
+
   /*키워드로 검색하는 map에 대한 css*/
   .map_wrap,
   .map_wrap * {

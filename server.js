@@ -37,7 +37,7 @@ db.once('open', function(){
     console.log("Connected to mongod server");
 });
 
-mongoose.connect('mongodb://localhost:27017');
+mongoose.connect('mongodb://localhost:27017/storeDB');
 
 // //404 error
 // function send404Message(response) {
