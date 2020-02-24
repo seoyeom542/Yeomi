@@ -1,16 +1,15 @@
-var express     = require('express');
-var app         = express();
-var bodyParser  = require('body-parser');
-var mongoose    = require('mongoose');
-var path = require('path');
-// [CONFIGURE ROUTER]
-// require('./routes')(app)
+const express     = require('express');
+const app         = express();
+const bodyParser  = require('body-parser');
+const mongoose    = require('mongoose');
+const path = require('path');
+const Store = require('./models/store');
+const router = require('./routes');
 
 // [CONFIGURE APP TO USE bodyParser]
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '/')));
-
 
 // [CONFIGURE SERVER PORT]
 var port = 8888;
@@ -22,9 +21,8 @@ app.get('/', function(req,res) {
 
 })
 
-app.post('/created', function(req,res) {
-
-})
+// [CONFIGURE ROUTER]
+router(app, Store)
 
 var db = mongoose.connection;
 db.on('error', function(){
@@ -60,10 +58,6 @@ mongoose.connect('mongodb://localhost:27017/storeDB');
 //     } else { // file이 존재 하지않을때, 
 //         send404Message(response);
 //     }
-// }
-
-// function createDB() {
-//     ///db save
 // }
 
 // [RUN SERVER]

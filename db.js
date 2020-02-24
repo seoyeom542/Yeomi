@@ -1,7 +1,7 @@
 // [LOAD PACKAGES]
 
 var mongoose    = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/storeDB');
+mongoose.connect('mongodb://localhost:27017/storeDB', { useNewUrlParser: true, useUnifiedTopology: true });
 
 var db = mongoose.connection;
 db.on('error', console.error);
@@ -53,8 +53,6 @@ Store.find(function(error, stores){
     }else{
         console.log(students);
     }
-})
-
 })
 
 // 특정아이디 수정하기
