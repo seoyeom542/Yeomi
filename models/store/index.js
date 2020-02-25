@@ -3,7 +3,7 @@ const mongoose    = require('mongoose');
 var storeSchema = mongoose.Schema({
     storeName: String,
     roadAdress: String,
-    storeNumber: Number,
+    storeNumber: String,
     storeX: Number,
     storeY: Number
 });

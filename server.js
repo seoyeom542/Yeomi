@@ -6,6 +6,7 @@ const path = require('path');
 const Store = require('./models/store');
 const router = require('./routes');
 
+
 // [CONFIGURE APP TO USE bodyParser]
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -36,29 +37,6 @@ db.once('open', function(){
 });
 
 mongoose.connect('mongodb://localhost:27017/storeDB');
-
-// //404 error
-// function send404Message(response) {
-//     response.writeHead(404, { "Content-Type": "text/plain" }); // 단순한 글자 출력 
-//     response.write("404 ERROR... "); response.end();
-// }
-
-// //200
-// function onRequest(request, response) {
-//     if (request.method == 'GET' && request.url == '/') {
-//         response.writeHead(200, { "Content-Type": "text/html;charset=utf-8';" }); // 웹페이지 출력 
-//         fs.createReadStream("./index.html").pipe(response); // 같은 디렉토리에 있는 index.html를 response 함 
-//     } else { // file이 존재 하지않을때, 
-//         send404Message(response);
-//     }
-
-//     if (request.method == 'POST' && request.url == '/create') {
-//         // request
-//         createDB(body)
-//     } else { // file이 존재 하지않을때, 
-//         send404Message(response);
-//     }
-// }
 
 // [RUN SERVER]
 app.listen(port, function(){

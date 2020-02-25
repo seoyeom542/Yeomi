@@ -1,12 +1,12 @@
 // routes/index.js
-
 module.exports = function (app, Store) {
-    // GET ALL BOOKS
+
+    // GET ALL store
     app.get('/api/storeDB', function (req, res) {
         res.send('ok');
     });
 
-    // GET SINGLE BOOK
+    // GET SINGLE store
     app.get('/api/storeDB/:store_id', function (req, res) {
         res.end();
     });
@@ -19,31 +19,40 @@ module.exports = function (app, Store) {
     // CREATE store
     app.post('/api/storeDB', function (req, res) {
         // db create
-        console.log('req.body:', req.body);
-        //res.status(200).send(req.body.name);
+        console.log('req.body: ', req.body);
+        console.log('req.body.storeName:', req.body.storeName);
+        console.log('req.body.storeX: ', req.body.storeX);
+        // res.status(200).send('create success');
 
-        const store = new Store();
+        let store = new Store();
+
         store.storeName = req.body.storeName;
         store.roadName = req.body.roadName;
         store.storeNumber = req.body.storeNumber;
+        store.storeX = req.boy.storeX;
+        store.storeY = req.boy.storeY;
 
-        store.save(function (err) {
-            if (err) {
+        store.save(function(err){
+            if(err){
                 console.error(err);
-                res.json({ result: 0 });
+                res.json({result: 0});
                 return;
+            }else{
+                console.log("정상적으로 등록되었습니다.")
             }
-            res.json({ result: 1 });
+            res.json({status: 200, result: 1});
+    
         });
+
 
     });
 
-    // UPDATE THE BOOK
+    // UPDATE THE store
     app.put('/api/storeDB/:store_id', function (req, res) {
         res.end();
     });
 
-    // DELETE BOOK
+    // DELETE store
     app.delete('/api/storeDB/:store_id', function (req, res) {
         res.end();
     });

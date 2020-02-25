@@ -1,10 +1,10 @@
 var markers = [];
-let roadName, storeX, storeY, storeNumber;
+let roadName, storeX, storeY, storeNumber, storeName;
 const mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-mapOption = {
-    center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-    level: 3 // 지도의 확대 레벨
-};
+    mapOption = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };
 // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
 var map = new kakao.maps.Map(mapContainer, mapOption);
 
@@ -70,10 +70,10 @@ function displayPlaces(places) {
         var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
             marker = addMarker(placePosition, i),
             itemEl = getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
-            storeX=places[i].x;
-            storeY=places[i].y;
-            roadName = places[i].road_address_name;
-            storeNumber = places[i].phone;
+        storeX = places[i].x;
+        storeY = places[i].y;
+        roadName = places[i].road_address_name;
+        storeNumber = places[i].phone;
 
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
         // LatLngBounds 객체에 좌표를 추가합니다
@@ -210,6 +210,7 @@ function displayInfowindow(marker, title) {
 
 //선택한 음식점의 정보를 보여주고 저장하는 함수입니다.
 function addToDb(title, storeX, storeY, storeNumber, roadName) {
+    storeName = title;
     document.getElementById("storeName").value = title;
     document.getElementById("roadName").value = roadName;
     document.getElementById("storeNumber").value = storeNumber;
@@ -223,7 +224,25 @@ function removeAllChildNods(el) {
 }
 
 //db를 추가하는 함수입니다.
+//라우터, 리퀘스트 post 요청
+//ajax로 호출
 function createDb() {
-    
+    //indeex.html에서 
+    console.log('hi!')
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/api/storeDB', true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    xhr.onreadystatechange = function() { // Call a function when the state changes.
+        if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+            // Request finished. Do processing here.
+            console.log('this = ', this);    
+        }
+    }
+
+    xhr.send("storeName="+storeName+'&roadname= '+roadName+'&storeNumber='+storeNumber+'&storeX='+storeX+'&storeY='+storeY);
+
 }
-        //라우터, 리퀘스트 post 요청
+
+

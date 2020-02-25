@@ -48,20 +48,20 @@
           </div>
         </div>
       </ul>
-      <form onsubmit="createDb();" method="GET">
+      <form onsubmit="createDb();return false">
         <ul>
-          상호명 : <input type="text" id="storeName">
+          상호명 : <input type="text" id="storeName" name="storeName">
         </ul>
         <ul>
-          주소 : <input type="text" id="roadName">
+          주소 : <input type="text" id="roadName" name="roadName">
         </ul>
         <ul>
-          전화번호: <input type="text" id="storeNumber">
+          전화번호: <input type="text" id="storeNumber" name="storeNumber">
         </ul>
         <ul>
           주메뉴 : <textarea id="bestM"></textarea>
         </ul>
-        <input type="submit" id="submit" value="등록하기">
+        <button type="submit">등록하기</button>
       </form>
 
     </ol>
