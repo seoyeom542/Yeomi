@@ -2,6 +2,7 @@ const express     = require('express');
 const app         = express();
 const bodyParser  = require('body-parser');
 const mongoose    = require('mongoose');
+const fs = require('fs');
 const path = require('path');
 const Store = require('./models/store');
 const router = require('./routes');
@@ -37,6 +38,8 @@ db.once('open', function(){
 });
 
 mongoose.connect('mongodb://localhost:27017/storeDB');
+
+
 
 // [RUN SERVER]
 app.listen(port, function(){

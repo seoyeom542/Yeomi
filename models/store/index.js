@@ -4,8 +4,8 @@ var storeSchema = mongoose.Schema({
     storeName: String,
     roadAdress: String,
     storeNumber: String,
-    storeX: Number,
-    storeY: Number
+    storeX: String,
+    storeY: String
 });
 
 module.exports = mongoose.model('store', storeSchema);

@@ -14,12 +14,11 @@ const placeshow = new kakao.maps.services.Places();
 // 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
 var infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
 
-// 키워드로 장소를 검색합니다
-searchPlaces();
+
 
 // 키워드 검색을 요청하는 함수입니다
 function searchPlaces() {
-
+    console.log('searchPlaces');
     var keyword = document.getElementById('keyword').value;
 
     // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
@@ -92,6 +91,7 @@ function displayPlaces(places) {
             });
 
             kakao.maps.event.addListener(marker, 'click', function () {
+                //displayMap();
                 addToDb(title, storeX, storeY, storeNumber, roadName);
             });
 
@@ -208,6 +208,13 @@ function displayInfowindow(marker, title) {
     infowindow.open(map, marker);
 }
 
+function displayMap() {
+    // 이동할 위도 경도 위치를 생성합니다 
+    var moveLatLon = new kakao.maps.LatLng(storeX, storeY);
+    // 지도 중심을 이동 시킵니다
+    map.setCenter(moveLatLon);
+}
+
 //선택한 음식점의 정보를 보여주고 저장하는 함수입니다.
 function addToDb(title, storeX, storeY, storeNumber, roadName) {
     storeName = title;
@@ -228,21 +235,44 @@ function removeAllChildNods(el) {
 //ajax로 호출
 function createDb() {
     //indeex.html에서 
+
     console.log('hi!')
 
     var xhr = new XMLHttpRequest();
     xhr.open('POST', '/api/storeDB', true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-    xhr.onreadystatechange = function() { // Call a function when the state changes.
+    xhr.onreadystatechange = function () { // Call a function when the state changes.
         if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
             // Request finished. Do processing here.
-            console.log('this = ', this);    
+            console.log('this = ', this);
         }
     }
+    xhr.send(`storeName=${storeName}&roadName=${roadName}&storeNumber=${storeNumber}&storeX=${storeX}&storeY=${storeY}`);
+}
 
-    xhr.send("storeName="+storeName+'&roadname= '+roadName+'&storeNumber='+storeNumber+'&storeX='+storeX+'&storeY='+storeY);
+function getData() {
+    console.log('getData!!!!!!')
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '/api/storeDB', true);
+    xhr.onreadystatechange = function () { // Call a function when the state changes.
+        if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+            // Request finished. Do processing here.
+            const responseData = JSON.parse(this.response)
+            // console.log(this.response.length);
+            console.log(typeof responseData);
+            console.log('getData this = ', responseData);
+            console.log(responseData.length);
+
+            for (var i = 0; i <= responseData.length; i++) {
+                document.getElementById("todayList").innerHTML+=responseData[i].storeName+"</nbsp>"+responseData[i].storeNumber+"<br>";
+            }
+        }
+    }
+    xhr.send(null);
 
 }
+
+getData()
 
 

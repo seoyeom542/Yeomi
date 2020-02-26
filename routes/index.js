@@ -3,7 +3,13 @@ module.exports = function (app, Store) {
 
     // GET ALL store
     app.get('/api/storeDB', function (req, res) {
-        res.send('ok');
+        Store.find({},  {storeName:1, roadName:1, storeNumber:1}, function (error, cursor) {
+            if(error){
+                console.error(error);
+                return res.status(500).send({message: error});
+            }
+            return res.status(200).send(cursor);
+        });
     });
 
     // GET SINGLE store
@@ -19,18 +25,13 @@ module.exports = function (app, Store) {
     // CREATE store
     app.post('/api/storeDB', function (req, res) {
         // db create
-        console.log('req.body: ', req.body);
-        console.log('req.body.storeName:', req.body.storeName);
-        console.log('req.body.storeX: ', req.body.storeX);
-        // res.status(200).send('create success');
-
         let store = new Store();
 
         store.storeName = req.body.storeName;
         store.roadName = req.body.roadName;
         store.storeNumber = req.body.storeNumber;
-        store.storeX = req.boy.storeX;
-        store.storeY = req.boy.storeY;
+        store.storeX = req.body.storeX;
+        store.storeY = req.body.storeY;
 
         store.save(function(err){
             if(err){
@@ -41,10 +42,7 @@ module.exports = function (app, Store) {
                 console.log("정상적으로 등록되었습니다.")
             }
             res.json({status: 200, result: 1});
-    
         });
-
-
     });
 
     // UPDATE THE store
