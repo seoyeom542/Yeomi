@@ -23,7 +23,7 @@ body {
   #serch {
     padding-top: 2%;
     padding-bottom: 2%;
-    margin-left: 25%;
+    margin-left: 5%;
   }
 
   #serching {
@@ -61,6 +61,27 @@ body {
   #submit{
     border: solid 1px black; 
     font-size=20pt
+  }
+
+  #todayList{
+    text-align: center;
+  }
+
+  #inputForm{
+    margin-left: 15%;
+  }
+
+  .textb{
+    font-size: 15pt;
+  }
+
+  #inputb{
+    font-size: 15pt;
+    margin-left: 30%;
+  }
+
+  #sType{
+    font-size: 15pt;
   }
 
   /*키워드로 검색하는 map에 대한 css*/

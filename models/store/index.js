@@ -1,8 +1,9 @@
 const mongoose    = require('mongoose');
 
 var storeSchema = mongoose.Schema({
+    writer: String,
     storeName: String,
-    roadAdress: String,
+    roadName: String,
     storeNumber: String,
     storeX: String,
     storeY: String

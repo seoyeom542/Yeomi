@@ -19,7 +19,7 @@ var infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
 // 키워드 검색을 요청하는 함수입니다
 function searchPlaces() {
     console.log('searchPlaces');
-    var keyword = document.getElementById('keyword').value;
+    let keyword = document.getElementById('keyword').value;
 
     // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
     placeshow.keywordSearch(keyword, placesSearchCB);
@@ -231,12 +231,9 @@ function removeAllChildNods(el) {
 }
 
 //db를 추가하는 함수입니다.
-//라우터, 리퀘스트 post 요청
-//ajax로 호출
 function createDb() {
-    //indeex.html에서 
-
     console.log('hi!')
+    let writer = document.getElementById('writer').value;
 
     var xhr = new XMLHttpRequest();
     xhr.open('POST', '/api/storeDB', true);
@@ -248,7 +245,7 @@ function createDb() {
             console.log('this = ', this);
         }
     }
-    xhr.send(`storeName=${storeName}&roadName=${roadName}&storeNumber=${storeNumber}&storeX=${storeX}&storeY=${storeY}`);
+    xhr.send(`writer=${writer}&storeName=${storeName}&roadName=${roadName}&storeNumber=${storeNumber}&storeX=${storeX}&storeY=${storeY}`);
 }
 
 function getData() {
@@ -258,14 +255,17 @@ function getData() {
     xhr.onreadystatechange = function () { // Call a function when the state changes.
         if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
             // Request finished. Do processing here.
-            const responseData = JSON.parse(this.response)
-            // console.log(this.response.length);
-            console.log(typeof responseData);
-            console.log('getData this = ', responseData);
-            console.log(responseData.length);
+            const responseData = JSON.parse(this.response);
 
+            //random수 생성
+            var randomNum = new Array();
+            for(var i=0; i<=4; i++){
+                randomNum[i]= Math.random()*responseData.length;
+            }
+
+            //list를 출력하는 for
             for (var i = 0; i <= responseData.length; i++) {
-                document.getElementById("todayList").innerHTML+=responseData[i].storeName+"</nbsp>"+responseData[i].storeNumber+"<br>";
+                document.getElementById("todayList").innerHTML+=(i+1)+"."+responseData[i].storeName+responseData[i].storeNumber+"<br>";
             }
         }
     }
@@ -274,5 +274,3 @@ function getData() {
 }
 
 getData()
-
-

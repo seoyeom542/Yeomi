@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<head>
+    <title>yummy</title>
+    <meta charset="utf-8">
+    <script type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f6f0b7d7340ad72b589bf8056b7240a6&libraries=services"></script>
+    <link rel="stylesheet" type="text/css" href="index_style.css">
+</head>
+
+<body>
+    <div id="title">
+        맛.zip
+    </div>
+    <div id="serch" onsubmit="serchDb(); return false">
+        <form>
+            <select name="sType" id="sType">
+                <option value="wName">작성자</option>
+                <option value="sName">상호</option>
+                <option value="sMenu">메뉴</option>
+            </select>
+            <input type="text" placeholder="검색어를 입력하세요" id="serching">
+        </form>
+    </div>
+    <div id="resultList">
+
+    </div>
+    <script type="text/javascript" src="serchProc.js"></script>
+</body>
+
+</html>

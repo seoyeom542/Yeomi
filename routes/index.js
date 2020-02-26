@@ -11,10 +11,22 @@ module.exports = function (app, Store) {
             return res.status(200).send(cursor);
         });
     });
+     
+    //FIND IN THE STORE
+    app.get('/api/storeDB/serchKey', function(req, res){
+        let serchKey = req.query.serchId;
 
-    // GET SINGLE store
-    app.get('/api/storeDB/:store_id', function (req, res) {
-        res.end();
+        //storeName 키값에 serchKey가 포함되어 있는 것을 검색
+        Store.find({storeNumber:{$regex: "02"}},  {storeName:1, roadName:1, storeNumber:1}, function (error, cursor) {
+            if(error){
+                console.error(error);
+                return res.status(500).send({message: error});
+            }else{
+                console.log("검색이 정상적으로 처리되었습니다.");
+            }
+            return res.status(200).send(cursor);;
+        });
+        
     });
 
     // GET BOOK BY AUTHOR
@@ -24,9 +36,9 @@ module.exports = function (app, Store) {
 
     // CREATE store
     app.post('/api/storeDB', function (req, res) {
-        // db create
         let store = new Store();
 
+        store.writer = req.body.writer;
         store.storeName = req.body.storeName;
         store.roadName = req.body.roadName;
         store.storeNumber = req.body.storeNumber;

@@ -10,10 +10,10 @@
 
 <body>
   <div id="title">
-    맛.zip
-  </div>
-  <div id="serch">
-    <input type="text" placeholder="검색어를 입력하세요" id="serching" onkeyup="enterkey();">
+	맛.zip
+	<div id="topMenu">
+		<a href="/serch.html">검색하기</a>
+	</div>
   </div>
   <div id="list" name="list">
     <p id="formtitle">오늘의 맛집</p>
@@ -41,22 +41,24 @@
           </div>
         </div>
       </ul>
-      <form onsubmit="createDb();return false">
+	  <form onsubmit="createDb();return false" id="inputForm">
+		<ul>
+			작성자 : <input type="text" name="writer" id="writer" size="40" class="textb">
+		</ul>
         <ul>
-          상호명 : <input type="text" id="storeName" name="storeName">
+          상호명 : <input type="text" id="storeName" name="storeName" size="40" class="textb">
         </ul>
         <ul>
-          주소 : <input type="text" id="roadName" name="roadName">
+          주소 : <input type="text" id="roadName" name="roadName" size="60" class="textb">
         </ul>
         <ul>
-          전화번호: <input type="text" id="storeNumber" name="storeNumber">
+          전화번호: <input type="text" id="storeNumber" name="storeNumber" size="40" class="textb">
         </ul>
         <ul>
           주메뉴 : <textarea id="bestM"></textarea>
         </ul>
-        <button type="submit">등록하기</button>
+        <button type="submit" id="inputb">등록하기</button>
       </form>
-
     </ol>
   </div>
 
