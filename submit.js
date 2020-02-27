@@ -14,8 +14,6 @@ const placeshow = new kakao.maps.services.Places();
 // 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
 var infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
 
-
-
 // 키워드 검색을 요청하는 함수입니다
 function searchPlaces() {
     console.log('searchPlaces');
@@ -217,6 +215,8 @@ function displayMap() {
 
 //선택한 음식점의 정보를 보여주고 저장하는 함수입니다.
 function addToDb(title, storeX, storeY, storeNumber, roadName) {
+    document.getElementById("storeNumber").innerHTML="";
+    document.getElementById("roadName").innerHTML="";
     storeName = title;
     document.getElementById("storeName").value = title;
     document.getElementById("roadName").value = roadName;
@@ -233,7 +233,7 @@ function removeAllChildNods(el) {
 //db를 추가하는 함수입니다.
 function createDb() {
     console.log('hi!');
-    let menu = document.getAnimations('bestM').value;
+    let menu = document.getElementById('bestM').value;
     let writer = document.getElementById('writer').value;
 
     var xhr = new XMLHttpRequest();

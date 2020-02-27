@@ -12,13 +12,12 @@
         맛.zip
         <div id="topMenu">
         <a href="/index.html">home</a>
-            <a href="/serch.html">검색하기</a>
+            <a href="/serch.html">list</a>
         </div>
     </div>
     <div id="serch" onsubmit="serchDb(); return false">
         <form>
             <select name="serchType" id="serchType">
-                <option value="all">전체</option>
                 <option value="wName">작성자</option>
                 <option value="sName">상호</option>
                 <option value="sMenu">메뉴</option>
@@ -27,7 +26,30 @@
         </form>
     </div>
     <div id="resultList"></div>
-    <div id="map"></div>
+    <div id="showData">
+        <div id="map"></div>
+
+        <form id="insertForm">
+            <ul>
+              작성자 : <input type="text" name="writer" id="writer" size="40" class="textb">
+            </ul>
+            <ul>
+              상호명 : <input type="text" id="storeName" name="storeName" size="40" class="textb">
+            </ul>
+            <ul>
+              주소 : <input type="text" id="roadName" name="roadName" size="60" class="textb">
+            </ul>
+            <ul>
+              전화번호: <input type="text" id="storeNumber" name="storeNumber" size="40" class="textb">
+            </ul>
+            <ul>
+                <div id="remoteData">
+                    주메뉴 : <textarea id="bestM"></textarea>
+                </div>
+  
+            </ul>
+          </form>
+    </div>
     <script type="text/javascript" src="serchProc.js"></script>
 </body>
 

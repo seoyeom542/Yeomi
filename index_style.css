@@ -270,3 +270,17 @@ body {
     cursor: default;
     color: #777;
   }
+
+  #resultList{
+    width: 50%;
+    float: left;
+  }
+
+  #showData{
+    width: 50%;
+    float: left;
+  }
+
+  #insertForm{
+    font-size: 20pt;
+  }
