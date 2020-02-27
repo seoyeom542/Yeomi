@@ -5,6 +5,7 @@ var storeSchema = mongoose.Schema({
     storeName: String,
     roadName: String,
     storeNumber: String,
+    menu: String,
     storeX: String,
     storeY: String
 });

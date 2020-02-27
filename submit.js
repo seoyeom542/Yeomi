@@ -232,7 +232,8 @@ function removeAllChildNods(el) {
 
 //db를 추가하는 함수입니다.
 function createDb() {
-    console.log('hi!')
+    console.log('hi!');
+    let menu = document.getAnimations('bestM').value;
     let writer = document.getElementById('writer').value;
 
     var xhr = new XMLHttpRequest();
@@ -245,12 +246,12 @@ function createDb() {
             console.log('this = ', this);
         }
     }
-    xhr.send(`writer=${writer}&storeName=${storeName}&roadName=${roadName}&storeNumber=${storeNumber}&storeX=${storeX}&storeY=${storeY}`);
+    xhr.send(`writer=${writer}&storeName=${storeName}&roadName=${roadName}&storeNumber=${storeNumber}&storeX=${storeX}&storeY=${storeY}&menu=${menu}`);
 }
 
 function getData() {
     console.log('getData!!!!!!')
-    var xhr = new XMLHttpRequest();
+    const xhr = new XMLHttpRequest();
     xhr.open('GET', '/api/storeDB', true);
     xhr.onreadystatechange = function () { // Call a function when the state changes.
         if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {

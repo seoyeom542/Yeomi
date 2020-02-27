@@ -14,28 +14,56 @@ module.exports = function (app, Store) {
      
     //FIND IN THE STORE
     app.get('/api/storeDB/serchKey', function(req, res){
+        console.log(req.query);
         let serchKey = req.query.serchId;
+        let typeKey = req.query.type;
 
         //storeName 키값에 serchKey가 포함되어 있는 것을 검색
-        Store.find({storeNumber:{$regex: "02"}},  {storeName:1, roadName:1, storeNumber:1}, function (error, cursor) {
-            if(error){
-                console.error(error);
-                return res.status(500).send({message: error});
-            }else{
-                console.log("검색이 정상적으로 처리되었습니다.");
-            }
-            return res.status(200).send(cursor);;
-        });
+        if(typeKey=="all"){ //serch in all
+            Store.find({storeNumber:{$regex: serchKey}},  {storeName:1, roadName:1, storeNumber:1}, function (error, cursor) {
+                if(error){
+                    console.error(error);
+                    return res.status(500).send({message: error});
+                }else{
+                    console.log("검색이 정상적으로 처리되었습니다.");
+                }
+                return res.status(200).send(cursor);;
+            })
+        }else if(typeKey=="wName"){ //serch in writer
+            Store.find({writer:{$regex: serchKey}}, {storeName:1, roadName:1, storeNumber:1}, function(error,cursor){
+                if(error){
+                    console.error(error);
+                }else{
+                    console.log("검색이 정상적으로 처리되었습니다.");
+                }
+                return res.status(200).send(cursor);;
+            })
+        }else if(typeKey=="sName"){ //serch in storeName
+            Store.find({storeName:{$regex: serchKey}}, {storeName:1, roadName:1, storeNumber:1}, function(error,cursor){
+                if(error){
+                    console.error(error);
+                }else{
+                    console.log("검색이 정상적으로 처리되었습니다.");
+                }
+                return res.status(200).send(cursor);;
+            })
+        }else{ //serch in 
+            Store.find({menu:{$regex: serchKey}}, {storeName:1, roadName:1, storeNumber:1}, function(error,cursor){
+                if(error){
+                    console.error(error);
+                }else{
+                    console.log("검색이 정상적으로 처리되었습니다.");
+                }
+                return res.status(200).send(cursor);;
+            })
+        }
         
-    });
-
-    // GET BOOK BY AUTHOR
-    app.get('/api/storeDB/storeName/:storeName', function (req, res) {
-        res.status(200).send(req.params.storeName);
     });
 
     // CREATE store
     app.post('/api/storeDB', function (req, res) {
+        console.log("등록시작");
+        console.log(req.body);
         let store = new Store();
 
         store.writer = req.body.writer;
@@ -44,6 +72,7 @@ module.exports = function (app, Store) {
         store.storeNumber = req.body.storeNumber;
         store.storeX = req.body.storeX;
         store.storeY = req.body.storeY;
+        store.menu = req.body.menu;
 
         store.save(function(err){
             if(err){

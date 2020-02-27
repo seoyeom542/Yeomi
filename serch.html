@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <head>
     <title>yummy</title>
     <meta charset="utf-8">
@@ -11,10 +10,15 @@
 <body>
     <div id="title">
         맛.zip
+        <div id="topMenu">
+        <a href="/index.html">home</a>
+            <a href="/serch.html">검색하기</a>
+        </div>
     </div>
     <div id="serch" onsubmit="serchDb(); return false">
         <form>
-            <select name="sType" id="sType">
+            <select name="serchType" id="serchType">
+                <option value="all">전체</option>
                 <option value="wName">작성자</option>
                 <option value="sName">상호</option>
                 <option value="sMenu">메뉴</option>
@@ -22,9 +26,8 @@
             <input type="text" placeholder="검색어를 입력하세요" id="serching">
         </form>
     </div>
-    <div id="resultList">
-
-    </div>
+    <div id="resultList"></div>
+    <div id="map"></div>
     <script type="text/javascript" src="serchProc.js"></script>
 </body>
 

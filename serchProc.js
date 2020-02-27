@@ -1,12 +1,15 @@
 //db를 추가하는 함수입니다.
 function serchDb() {
-    console.log('hi!')
-    let sKey = document.getElementById('serching').value;
+    console.log("hello");
+
+    const type = document.getElementById('serchType').value;
+    const sKey = document.getElementById('serching').value;
+
     console.log(sKey);
-    console.log(typeof(sKey));
+    console.log(type);
 
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', "/api/storeDB/serchKey?serchId="+sKey, true);
+    xhr.open('GET', "/api/storeDB/serchKey?serchId="+sKey+"&type="+type, true);
     xhr.onreadystatechange = function () { // Call a function when the state changes.
         console.log('this.readyState: ', this.readyState);
         console.log('this.state:', this.state); 
