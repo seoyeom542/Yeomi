@@ -48,11 +48,11 @@ function placesSearchCB(data, status, pagination) {
 // 검색 결과 목록과 마커를 표출하는 함수입니다
 function displayPlaces(places) {
 
-    var listEl = document.getElementById('placesList'),
-        menuEl = document.getElementById('menu_wrap'),
-        fragment = document.createDocumentFragment(),
-        bounds = new kakao.maps.LatLngBounds(),
-        listStr = '';
+    var listEl = document.getElementById('placesList');
+    var menuEl = document.getElementById('menu_wrap');
+    var fragment = document.createDocumentFragment();
+    var bounds = new kakao.maps.LatLngBounds();
+    var listStr = '';
 
     // 검색 결과 목록에 추가된 항목들을 제거합니다
     removeAllChildNods(listEl);
@@ -215,8 +215,8 @@ function displayMap() {
 
 //선택한 음식점의 정보를 보여주고 저장하는 함수입니다.
 function addToDb(title, storeX, storeY, storeNumber, roadName) {
-    document.getElementById("storeNumber").innerHTML="";
-    document.getElementById("roadName").innerHTML="";
+    document.getElementById("storeNumber").innerHTML = "";
+    document.getElementById("roadName").innerHTML = "";
     storeName = title;
     document.getElementById("storeName").value = title;
     document.getElementById("roadName").value = roadName;
@@ -258,14 +258,14 @@ function getData() {
 
             //random수 생성
             var randomNum = new Array();
-            for(var i=0; i<=4; i++){
-                randomNum[i]= Math.floor(Math.random()*responseData.length);
+            for (var i = 0; i <= 4; i++) {
+                randomNum[i] = Math.floor(Math.random() * responseData.length);
                 console.log(randomNum[i]);
             }
 
             //list를 출력하는 for
             for (var i = 0; i <= randomNum.length; i++) {
-                document.getElementById("todayList").innerHTML+=(i+1)+"."+responseData[randomNum[i]].storeName+responseData[randomNum[i]].storeNumber+"<br>";
+                document.getElementById("todayList").innerHTML += (i + 1) + "." + responseData[randomNum[i]].storeName + responseData[randomNum[i]].storeNumber + "<br>";
             }
         }
     }
