@@ -3,68 +3,98 @@
 <head>
   <title>yummy</title>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <script type="text/javascript"
     src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f6f0b7d7340ad72b589bf8056b7240a6&libraries=services"></script>
+
   <link rel="stylesheet" type="text/css" href="index_style.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-  <div id="title">
-    맛.zip
-    <div id="topMenu">
-      <a href="/index.html">home</a>
-      <a href="/serch.html">list</a>
-    </div>
-  </div>
-  <div id="list" name="list">
-    <p id="formtitle">오늘의 맛집</p>
-    <div id="todayList"></div>
-  </div>
-  <div id="en">
-    <p id="formtitle">맛집 등록하기</p>
-    <ol id="form">
-      <ul>
-        <div class="map_wrap">
-          <div id="map"></div>
+  <header>
+		<h2><a href="#">Yummy</a></h2>
+		<nav>
+			<li><a href="index.html">Home</a></li>
+			<li><a href="serch.html">List</a></li>
+		</nav>
+  </header>
 
-          <div id="menu_wrap" class="bg_white">
-            <div class="option">
-              <div>
-                <form onsubmit="searchPlaces(); return false;">
-                  키워드 : <input type="text" placeholder="검색어를 입력하세요" id="keyword" size="15">
-                  <button type="submit">검색하기</button>
-                </form>
+  <section class="hero">
+		<div class="background-image" style="background-image: url(assets/img/hero.jpg);"></div>
+		<h1>오늘 점심 뭐 먹지?</h1>
+		<h3>항상 고민되는 점심 메뉴는 누가 골라주나.....</h3>
+		<a href="#insertData" class="btn">음식점 등록하기</a>
+  </section>
+  
+  <section class="our-work">
+		<h3 class="title">오늘의 맛집</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices. Morbi vitae pulvinar velit. Sed aliquam dictum sapien, id sagittis augue malesuada eu.</p>
+		<hr>
+
+		<ul class="grid">
+      <div id="todayList" class="fa fa-cubes"></ul>></div>
+		</div>
+  </section>
+
+  <a name="insertData">
+  <section class="features">
+		<h3 class="title">맛집 등록하기</h3>
+		<hr>
+
+		<ul class="grid">
+      <ol id="form">
+        <ul>
+          <div class="map_wrap">
+            <div id="map"></div>
+  
+            <div id="menu_wrap" class="bg_white">
+              <div class="option">
+                <div>
+                  <form onsubmit="searchPlaces(); return false;">
+                    키워드 : <input type="text" placeholder="검색어를 입력하세요" id="keyword" size="15">
+                    <button type="submit">검색하기</button>
+                  </form>
+                </div>
               </div>
+              <hr>
+              <ul id="placesList"></ul>
+              <div id="pagination"></div>
             </div>
-            <hr>
-            <ul id="placesList"></ul>
-            <div id="pagination"></div>
           </div>
-        </div>
-      </ul>
-      <form onsubmit="createDb(); return false" id="inputForm">
-        <ul>
-          작성자 : <input type="text" name="writer" id="writer" size="40" class="textb">
         </ul>
-        <ul>
-          상호명 : <input type="text" id="storeName" name="storeName" size="40" class="textb">
-        </ul>
-        <ul>
-          주소 : <input type="text" id="roadName" name="roadName" size="60" class="textb">
-        </ul>
-        <ul>
-          전화번호: <input type="text" id="storeNumber" name="storeNumber" size="40" class="textb">
-        </ul>
-        <ul>
-          주메뉴 : <textarea id="bestM"></textarea>
-        </ul>
-        <button type="submit" id="inputb">등록하기</button>
-      </form>
-    </ol>
-  </div>
+        <br>
+        <form onsubmit="createDb(); return false" id="inputForm">
+          <ul>
+            작성자 : <input type="text" name="writer" id="writer" size="40" class="textb">
+          </ul>
+          <ul>
+            상호명 : <input type="text" id="storeName" name="storeName" size="40" class="textb">
+          </ul>
+          <ul>
+            주소 : <input type="text" id="roadName" name="roadName" size="60" class="textb">
+          </ul>
+          <ul>
+            전화번호: <input type="text" id="storeNumber" name="storeNumber" size="40" class="textb">
+          </ul>
+          <ul>
+            주메뉴 : <textarea id="bestM"></textarea>
+          </ul>
+          <button type="submit" id="inputb">등록하기</button>
+        </form>
+      </ol>
+		</div>
+  </section>
+  </a>
+  
+  <footer>
+		<p>Made by <a href="http://tutorialzine.com/" target="_blank">tutorialzine</a>. images courtesy to <a href="http://unsplash.com/" target="_blank">unsplash</a>.</p>
+		<p>No attribution required. you can remove this footer.</p>
+	</footer>
 
   <script type="text/javascript" src="submit.js"></script>
-
 </body>
-
 </html>

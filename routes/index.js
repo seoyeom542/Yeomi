@@ -84,7 +84,7 @@ module.exports = function (app, Store) {
         const updateData = req.body.menu;
         Store.updateOne({ _id: req.body.id }, { menu: updateData }, function (error, store) {
             if (error) return res.status(500).json({ error: 'database failure' });
-            else if (!store){
+            else if (!store) {
                 console.log("store not found");
             }
             else {
@@ -94,8 +94,20 @@ module.exports = function (app, Store) {
     });
 
     // DELETE store
-    app.delete('/api/deleteDB', function (req, res) {
-        res.end();
+    app.delete('/api/deleteDB/:id', function (req, res) {
+        const deleteKey = req.params.id;
+        console.log("삭제하러 옴 === ", deleteKey);
+
+        Store.deleteOne({ _id: deleteKey }, function (error, cursor) {
+            if (error) {
+                console.error("error: ");
+                return res.status(500).send(error);
+            }
+
+            console.log("정상적으로 삭제 되었습니다.");
+            return res.status(200).send(cursor);
+            
+        })
     });
 
 }//end of modle

@@ -79,7 +79,7 @@ function displayPlaces(places) {
         // 마커와 검색결과 항목에 mouseover 했을때
         // 해당 장소에 인포윈도우에 장소명을 표시합니다
         // mouseout 했을 때는 인포윈도우를 닫습니다
-        (function (marker, title, places) {
+        (function (marker, title, storeNumber) {
             kakao.maps.event.addListener(marker, 'mouseover', function () {
                 displayInfowindow(marker, title);
             });
@@ -89,6 +89,7 @@ function displayPlaces(places) {
             });
 
             kakao.maps.event.addListener(marker, 'click', function () {
+                console.log(storeNumber);
                 //displayMap();
                 addToDb(title, storeX, storeY, storeNumber, roadName);
             });
@@ -100,7 +101,7 @@ function displayPlaces(places) {
             itemEl.onmouseout = function () {
                 infowindow.close();
             };
-        })(marker, places[i].place_name);
+        })(marker, places[i].place_name, storeNumber);
 
         fragment.appendChild(itemEl);
     }
@@ -261,12 +262,13 @@ function getData() {
             //random수 생성
             var randomNum = new Array();
             for(var i=0; i<=4; i++){
-                randomNum[i]= Math.random()*responseData.length;
+                randomNum[i]= Math.floor(Math.random()*responseData.length);
+                console.log(randomNum[i]);
             }
 
             //list를 출력하는 for
-            for (var i = 0; i <= responseData.length; i++) {
-                document.getElementById("todayList").innerHTML+=(i+1)+"."+responseData[i].storeName+responseData[i].storeNumber+"<br>";
+            for (var i = 0; i <= randomNum.length; i++) {
+                document.getElementById("todayList").innerHTML+=(i+1)+"."+responseData[randomNum[i]].storeName+responseData[randomNum[i]].storeNumber+"<br>";
             }
         }
     }

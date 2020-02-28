@@ -37,7 +37,7 @@ db.once('open', function(){
     console.log("Connected to mongod server");
 });
 
-mongoose.connect('mongodb://localhost:27017/storeDB');
+mongoose.connect('mongodb://localhost:27017/storeDB', {useNewUrlParser: true, useUnifiedTopology: true});
 
 
 

@@ -1,7 +1,7 @@
 let storeName, storeNumber, roadName, menu, storeX, storeY, id, writer;
-//const button = "<a href='/result.html'><button id='inputb'>정보보기</button></a>";
-
 let num = 1;
+
+window.onload = createMap();
 
 //모든 리스트를 보여주는 함수
 function getData() {
@@ -83,37 +83,45 @@ function showData(storeName, storeNumber, roadName, storeX, storeY, id) {
     //지도생성 - 해당 음식점 정보 노출 - 수정/삭제 
     const mainMenu = "주메뉴 : <textarea id='bestM'></textarea><br>"
     const btnUpdate = "<button id='inputb' onclick='updateData(); return false'>수정하기</button>";
-    const btndelete = "<button id='inputb' onclick='deleteData() return false'>삭제하기</button>";
+    const btndelete = "<button id='inputb' onclick='deleteData(); return false'>삭제하기</button>";
 
     document.getElementById("storeName").value = storeName;
     document.getElementById("roadName").value = roadName;
     document.getElementById("storeNumber").value = storeNumber;
 
-    createMap();
     console.log(roadName);
     document.getElementById('remoteData').innerHTML = mainMenu + btnUpdate + btndelete;
     document.getElementById("bestM").value = menu;
 }
+createMap()
 
 function createMap() {
-    const mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-        mapOption = {
-            center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-            level: 3 // 지도의 확대 레벨
-        };
 
-    // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
-    var map = new kakao.maps.Map(mapContainer, mapOption);
+    function setCenter() {
+        // 이동할 위도 경도 위치를 생성합니다 
+        var moveLatLon = new kakao.maps.LatLng(33.452613, 126.570888);
+
+        // 지도 중심을 이동 시킵니다
+        map.setCenter(moveLatLon);
+    }
+
+    function panTo() {
+        // 이동할 위도 경도 위치를 생성합니다 
+        var moveLatLon = new kakao.maps.LatLng(33.450580, 126.574942);
+
+        // 지도 중심을 부드럽게 이동시킵니다
+        // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
+        map.panTo(moveLatLon);
+    }
+
 }
 
 function updateData() {
     console.log("update data start");
-    let menu = document.getElementById('bestM').value;
+    let bestMenu = document.getElementById('bestM').value;
 
     var xhr = new XMLHttpRequest();
-    //xhr.open('PUT', `/api/storeDB/${id}+${menu}`, true);
     xhr.open('PUT', `/api/updateDB`, true);
-
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     xhr.onreadystatechange = function () { // Call a function when the state changes.
@@ -122,9 +130,19 @@ function updateData() {
             console.log('this = ', this);
         }
     }
-    xhr.send(`id=${id}&menu=${menu}`);
+    xhr.send(`id=${id}&menu=${bestMenu}`);
 }
 
 function deleteData() {
+    const confirmResult = confirm("정말로 삭제하시겠습니까?");
 
+    if (confirmResult == true) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('DELETE', `/api/deleteDB/${id}`, true);
+        xhr.onreadystatechange = function () {
+
+
+        }
+        xhr.send(null);
+    }
 }
