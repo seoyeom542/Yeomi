@@ -34,12 +34,12 @@ function getData() {
 getData()
 
 //db를 검색하는 함수
-function serchDb() {
-    const type = document.getElementById('serchType').value;
-    const sKey = document.getElementById('serching').value;
+function searchDb() {
+    const type = document.getElementById('searchType').value;
+    const sKey = document.getElementById('searching').value;
 
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', "/api/storeDB/serchKey?serchId=" + sKey + "&type=" + type, true);
+    xhr.open('GET', "/api/storeDB/searchKey?searchId=" + sKey + "&type=" + type, true);
     xhr.onreadystatechange = function () { // Call a function when the state changes.
         console.log('this.readyState: ', this.readyState);
         console.log('this.state:', this.state);

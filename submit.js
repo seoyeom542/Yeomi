@@ -265,7 +265,7 @@ function getData() {
 
             //list를 출력하는 for
             for (var i = 0; i <= randomNum.length; i++) {
-                document.getElementById("todayList").innerHTML += (i + 1) + "." + responseData[randomNum[i]].storeName + responseData[randomNum[i]].storeNumber + "<br>";
+                document.getElementById("todayList").innerHTML += (i + 1) + "." + responseData[randomNum[i]].storeName + responseData[randomNum[i]].storeNumber + "<br><br>";
             }
         }
     }

@@ -13,7 +13,7 @@ module.exports = function (app, Store) {
     });
 
     //FIND IN THE STORE
-    app.get('/api/storeDB/serchKey', function (req, res) {
+    app.get('/api/storeDB/searchKey', function (req, res) {
         console.log(req.query);
         let serchKey = req.query.serchId;
         let typeKey = req.query.type;

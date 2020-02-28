@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <head>
     <title>yummy</title>
     <meta charset="utf-8">
@@ -19,7 +18,7 @@
         <h2><a href="#">Yummy</a></h2>
         <nav>
             <li><a href="index.html">Home</a></li>
-            <li><a href="serch.html">List</a></li>
+            <li><a href="search.html">List</a></li>
         </nav>
     </header>
 
@@ -30,14 +29,14 @@
 
     <section class="features">
         <h3 class="title">리스트를 보자</h3>
-        <div id="serch" onsubmit="serchDb(); return false">
+        <div id="search" onsubmit="searchDb(); return false">
             <form>
-                <select name="serchType" id="serchType">
+                <select name="searchType" id="searchType">
                     <option value="wName">작성자</option>
                     <option value="sName">상호</option>
                     <option value="sMenu">메뉴</option>
                 </select>
-                <input type="text" placeholder="검색어를 입력하세요" id="serching">
+                <input type="text" placeholder="검색어를 입력하세요" id="searching">
             </form>
         </div>
 		<hr>
@@ -72,14 +71,11 @@
 		</div>
 	</section>
 
-    
-    
-
     <footer>
 		<p>Made by <a href="http://tutorialzine.com/" target="_blank">tutorialzine</a>. images courtesy to <a href="http://unsplash.com/" target="_blank">unsplash</a>.</p>
 		<p>No attribution required. you can remove this footer.</p>
 	</footer>
-    <script type="text/javascript" src="serchProc.js"></script>
+    <script type="text/javascript" src="searchProc.js"></script>
 </body>
 
 </html>
