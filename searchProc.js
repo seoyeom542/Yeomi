@@ -5,7 +5,7 @@ let num = 1;
 function getData() {
     console.log('getData!!!!!!')
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', '/api/storeDB', true);
+    xhr.open('GET', '/api/storeDB/', true);
     xhr.onreadystatechange = function () { // Call a function when the state changes.
         if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
             // Request finished. Do processing here.
@@ -51,8 +51,8 @@ function searchDb() {
             const responseList = JSON.parse(this.response);
             console.log(responseList.length);
             console.log(responseList);
-            //clearDiv();
-            if (responseList.length == 0) {
+
+            if (responseList.length === 0) {
                 alert("검색결과가 존재하지 않습니다.!!!");
             } else {
                 for (var i = 0; i <= responseList.length; i++) {
@@ -77,7 +77,7 @@ function searchDb() {
     xhr.send(null);
 }
 
-function showData(storeName, storeNumber, roadName, storeX, storeY, id) {
+function showData(storeName, storeNumber, roadName) {
     //지도생성 - 해당 음식점 정보 노출 - 수정/삭제 
     const mainMenu = "주메뉴 : <textarea id='bestM'></textarea><br>"
     const btnUpdate = "<button id='inputb' onclick='updateData(); return false'>수정하기</button>";

@@ -15,12 +15,12 @@ module.exports = function (app, Store) {
     //FIND IN THE STORE
     app.get('/api/storeDB/searchKey', function (req, res) {
         console.log(req.query);
-        let serchKey = req.query.serchId;
+        let searchKey = req.query.searchId;
         let typeKey = req.query.type;
 
         //storeName 키값에 serchKey가 포함되어 있는 것을 검색
         if (typeKey == "wName") { //serch in writer
-            Store.find({ writer: { $regex: serchKey } }, { _id: 1, storeName: 1, roadName: 1, storeNumber: 1 }, function (error, cursor) {
+            Store.find({ writer: { $regex: searchKey } }, { _id: 1, storeName: 1, roadName: 1, storeNumber: 1 }, function (error, cursor) {
                 if (error) {
                     console.error(error);
                 } else {
@@ -29,7 +29,7 @@ module.exports = function (app, Store) {
                 return res.status(200).send(cursor);;
             })
         } else if (typeKey == "sName") { //serch in storeName
-            Store.find({ storeName: { $regex: serchKey } }, { _id: 1, storeName: 1, roadName: 1, storeNumber: 1, writer: 1, storeX: 1, storeY: 1, menu: 1 }, function (error, cursor) {
+            Store.find({ storeName: { $regex: searchKey } }, { _id: 1, storeName: 1, roadName: 1, storeNumber: 1, writer: 1, storeX: 1, storeY: 1, menu: 1 }, function (error, cursor) {
                 if (error) {
                     console.error(error);
                 } else {
@@ -38,7 +38,7 @@ module.exports = function (app, Store) {
                 return res.status(200).send(cursor);;
             })
         } else { //serch in 
-            Store.find({ menu: { $regex: serchKey } }, { _id: 1, storeName: 1, roadName: 1, storeNumber: 1, storeX: 1, storeY: 1, writer: 1, menu: 1 }, function (error, cursor) {
+            Store.find({ menu: { $regex: searchKey } }, { _id: 1, storeName: 1, roadName: 1, storeNumber: 1, storeX: 1, storeY: 1, writer: 1, menu: 1 }, function (error, cursor) {
                 if (error) {
                     console.error(error);
                 } else {

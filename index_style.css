@@ -60,7 +60,7 @@ body {
 
   #submit{
     border: solid 1px black; 
-    font-size=20pt;
+    font-size: 20pt;
   }
 
   #todayList{
@@ -277,15 +277,23 @@ body {
   }
 
   #resultList{
-    width: 50%;
-    float: left;
-  }
-
-  #showData{
-    width: 50%;
-    float: left;
+    font-size: 20pt;
   }
 
   #insertForm{
     font-size: 20pt;
   }
+
+  #searching{
+    font-size: 20pt;
+  width: 500px;  
+  height: 50pt;
+}
+
+#showData{
+  font-size: 20pt;
+}
+
+#searchType{
+  font-size: 20pt;
+}
