@@ -16,7 +16,6 @@ var infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
 
 // 키워드 검색을 요청하는 함수입니다
 function searchPlaces() {
-    console.log('searchPlaces');
     let keyword = document.getElementById('keyword').value;
 
     // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
@@ -79,7 +78,7 @@ function displayPlaces(places) {
         // 마커와 검색결과 항목에 mouseover 했을때
         // 해당 장소에 인포윈도우에 장소명을 표시합니다
         // mouseout 했을 때는 인포윈도우를 닫습니다
-        (function (marker, title, storeNumber) {
+        (function (marker, title, storeNumber, roadName, storeX, storeY) {
             kakao.maps.event.addListener(marker, 'mouseover', function () {
                 displayInfowindow(marker, title);
             });
@@ -89,7 +88,7 @@ function displayPlaces(places) {
             });
 
             kakao.maps.event.addListener(marker, 'click', function () {
-                console.log(storeNumber);
+                console.log(roadName);
                 //displayMap();
                 addToDb(title, storeX, storeY, storeNumber, roadName);
             });
@@ -101,7 +100,7 @@ function displayPlaces(places) {
             itemEl.onmouseout = function () {
                 infowindow.close();
             };
-        })(marker, places[i].place_name, storeNumber);
+        })(marker, places[i].place_name, storeNumber, roadName, storeX, storeY);
 
         fragment.appendChild(itemEl);
     }
@@ -233,7 +232,6 @@ function removeAllChildNods(el) {
 
 //db를 추가하는 함수입니다.
 function createDb() {
-    console.log('hi!');
     let menu = document.getElementById('bestM').value;
     let writer = document.getElementById('writer').value;
 
@@ -251,7 +249,6 @@ function createDb() {
 }
 
 function getData() {
-    console.log('getData!!!!!!')
     const xhr = new XMLHttpRequest();
     xhr.open('GET', '/api/storeDB', true);
     xhr.onreadystatechange = function () { // Call a function when the state changes.

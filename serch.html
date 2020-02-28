@@ -1,56 +1,84 @@
 <!DOCTYPE html>
+
 <head>
     <title>yummy</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript"
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f6f0b7d7340ad72b589bf8056b7240a6"></script>
+
     <link rel="stylesheet" type="text/css" href="index_style.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <div id="title">
-        맛.zip
-        <div id="topMenu">
-        <a href="/index.html">home</a>
-            <a href="/serch.html">list</a>
-        </div>
-    </div>
-    <div id="serch" onsubmit="serchDb(); return false">
-        <form>
-            <select name="serchType" id="serchType">
-                <option value="wName">작성자</option>
-                <option value="sName">상호</option>
-                <option value="sMenu">메뉴</option>
-            </select>
-            <input type="text" placeholder="검색어를 입력하세요" id="serching">
-        </form>
-    </div>
-    <div id="resultList"></div>
-    <div id="showData">
-        <div id="map"></div>
+    <header>
+        <h2><a href="#">Yummy</a></h2>
+        <nav>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="serch.html">List</a></li>
+        </nav>
+    </header>
 
-        <form id="insertForm">
-            <ul>
-              작성자 : <input type="text" name="writer" id="writer" size="40" class="textb">
-            </ul>
-            <ul>
-              상호명 : <input type="text" id="storeName" name="storeName" size="40" class="textb">
-            </ul>
-            <ul>
-              주소 : <input type="text" id="roadName" name="roadName" size="60" class="textb">
-            </ul>
-            <ul>
-              전화번호: <input type="text" id="storeNumber" name="storeNumber" size="40" class="textb">
-            </ul>
-            <ul>
-                <div id="remoteData">
-                    주메뉴 : <textarea id="bestM"></textarea>
-                </div>
-  
-            </ul>
-          </form>
-    </div>
+    <section class="heroR">
+        <div class="background-image" ></div>
+        <h1>여기서는 검색과 리스트 보기 가능</h1>
+    </section>
+
+    <section class="features">
+        <h3 class="title">리스트를 보자</h3>
+        <div id="serch" onsubmit="serchDb(); return false">
+            <form>
+                <select name="serchType" id="serchType">
+                    <option value="wName">작성자</option>
+                    <option value="sName">상호</option>
+                    <option value="sMenu">메뉴</option>
+                </select>
+                <input type="text" placeholder="검색어를 입력하세요" id="serching">
+            </form>
+        </div>
+		<hr>
+
+		<ul class="grid">
+			<li>
+                <div id="resultList"></div>
+			</li>
+			<li>   
+                <div id="showData">
+                    <form id="insertForm">
+                        <ul>
+                            작성자 : <input type="text" name="writer" id="writer" size="40" class="textb">
+                        </ul>
+                        <ul>
+                            상호명 : <input type="text" id="storeName" name="storeName" size="40" class="textb">
+                        </ul>
+                        <ul>
+                            주소 : <input type="text" id="roadName" name="roadName" size="60" class="textb">
+                        </ul>
+                        <ul>
+                            전화번호: <input type="text" id="storeNumber" name="storeNumber" size="40" class="textb">
+                        </ul>
+                        <ul id="remoteData">
+                            <div id="remoteData">
+                                주메뉴 : <textarea id="bestM"></textarea>
+                            </div>
+                        </ul>
+                    </form>
+                </div> 
+			</li>
+		</div>
+	</section>
+
+    
+    
+
+    <footer>
+		<p>Made by <a href="http://tutorialzine.com/" target="_blank">tutorialzine</a>. images courtesy to <a href="http://unsplash.com/" target="_blank">unsplash</a>.</p>
+		<p>No attribution required. you can remove this footer.</p>
+	</footer>
     <script type="text/javascript" src="serchProc.js"></script>
 </body>
 

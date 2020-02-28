@@ -1,8 +1,6 @@
 let storeName, storeNumber, roadName, menu, storeX, storeY, id, writer;
 let num = 1;
 
-window.onload = createMap();
-
 //모든 리스트를 보여주는 함수
 function getData() {
     console.log('getData!!!!!!')
@@ -24,9 +22,9 @@ function getData() {
                 writer = responseData[i].writer;
                 menu = responseData[i].menu;
 
-                const button = `<button id='inputb' onclick='showData("${id}", "${storeName}", "${storeNumber}", "${roadName}", "${storeX}")'>정보보기</button>`;
-                document.getElementById("resultList").innerHTML += num + "." + storeName + storeNumber;
-                document.getElementById("resultList").innerHTML += button + "<br>";
+                const button = `<button id='btn' onclick='showData("${id}", "${storeName}", "${storeNumber}", "${roadName}", "${storeX}")'>정보보기</button>`;
+                document.getElementById("resultList").innerHTML += num + "." + storeName + storeNumber+ button + "<br>";
+                //document.getElementById("resultList").innerHTML += button + "<br>";
                 num++;
             }
         }
@@ -83,7 +81,7 @@ function showData(storeName, storeNumber, roadName, storeX, storeY, id) {
     //지도생성 - 해당 음식점 정보 노출 - 수정/삭제 
     const mainMenu = "주메뉴 : <textarea id='bestM'></textarea><br>"
     const btnUpdate = "<button id='inputb' onclick='updateData(); return false'>수정하기</button>";
-    const btndelete = "<button id='inputb' onclick='deleteData(); return false'>삭제하기</button>";
+    const btndelete = "<button id='btn' onclick='deleteData(); return false'>삭제하기</button>";
 
     document.getElementById("storeName").value = storeName;
     document.getElementById("roadName").value = roadName;
@@ -92,28 +90,6 @@ function showData(storeName, storeNumber, roadName, storeX, storeY, id) {
     console.log(roadName);
     document.getElementById('remoteData').innerHTML = mainMenu + btnUpdate + btndelete;
     document.getElementById("bestM").value = menu;
-}
-createMap()
-
-function createMap() {
-
-    function setCenter() {
-        // 이동할 위도 경도 위치를 생성합니다 
-        var moveLatLon = new kakao.maps.LatLng(33.452613, 126.570888);
-
-        // 지도 중심을 이동 시킵니다
-        map.setCenter(moveLatLon);
-    }
-
-    function panTo() {
-        // 이동할 위도 경도 위치를 생성합니다 
-        var moveLatLon = new kakao.maps.LatLng(33.450580, 126.574942);
-
-        // 지도 중심을 부드럽게 이동시킵니다
-        // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
-        map.panTo(moveLatLon);
-    }
-
 }
 
 function updateData() {
@@ -140,8 +116,6 @@ function deleteData() {
         var xhr = new XMLHttpRequest();
         xhr.open('DELETE', `/api/deleteDB/${id}`, true);
         xhr.onreadystatechange = function () {
-
-
         }
         xhr.send(null);
     }

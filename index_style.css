@@ -80,6 +80,10 @@ body {
     margin-left: 30%;
   }
 
+  #btn{
+    font-size: 15pt;
+  }
+
   #serchType{
     font-size: 15pt;
   }

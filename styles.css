@@ -164,6 +164,14 @@ header nav li:last-child{
 	text-align: center;
 }
 
+.heroR{
+	position: relative;
+	//justify-content: center;
+	min-height: 100vh;
+	color: #fff;
+	text-align: center;
+}
+
 .hero .background-image{
 	position: absolute;
 	top: 0;
@@ -171,7 +179,18 @@ header nav li:last-child{
 	width: 100%;
 	height: 100%;
 	background-size: cover;
-	background-color: #2196F3;
+	background-color: #414a4f;
+	z-index: -1;
+}
+
+.heroR .background-image{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 25%;
+	background-size: cover;
+	background-color: #414a4f;
 	z-index: -1;
 }
 
@@ -182,6 +201,17 @@ header nav li:last-child{
 	left: 0;
 	width: 100%;
 	height: 100%;
+	background-color: #414a4f;
+	opacity: 0.75;
+}
+
+.heroR .background-image:after{
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 25%;
 	background-color: #414a4f;
 	opacity: 0.75;
 }
