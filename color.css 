@@ -1,0 +1,6 @@
+:root {	
+	main-color: #DB4455;
+    background-color: #FFE4E3;
+    sub-pink-color: #E79C9C;
+    sub-blue-color: #53B9C6;
+}
